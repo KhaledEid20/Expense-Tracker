@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Expense_Tracker.Data;
-using Expense_Tracker.Services.Interfaces;
+
 
 namespace Expense_Tracker.Services
 {
@@ -13,6 +12,25 @@ namespace Expense_Tracker.Services
         public Base(AppDbContext context)
         {
             context = _context;
+        }
+
+        public async Task<List<CategoryResult>> GetAllCategories()
+        {
+            var Elements = await _context.Categories.ToListAsync();
+            if(Elements == null){
+                return new List<CategoryResult>(){
+                    new CategoryResult{
+                        CategoryName = "No Element Exist",
+                        result = false
+                    }
+                };
+            }
+            var result = Elements.Select(e => new CategoryResult{
+                CategoryName = e.CategoryName,
+                result = false
+
+            }).ToList();
+            return result;
         }
     }
 }

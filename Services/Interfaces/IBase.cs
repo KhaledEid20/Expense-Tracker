@@ -7,6 +7,7 @@ namespace Expense_Tracker.Services.Interfaces
 {
     public interface IBase<T> where T: class
     {
-        
+        Task<List<CategoryResult>> GetAllCategories();
+
     }
 }

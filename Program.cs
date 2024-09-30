@@ -1,9 +1,13 @@
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Identity;
 global using Expense_Tracker.Models;
-using Expense_Tracker.Data;
-using Microsoft.EntityFrameworkCore;
-using Expense_Tracker.Services.Interfaces;
+global using Expense_Tracker.Data.DTOs;
+global using Expense_Tracker.Data;
+global using Expense_Tracker.Services.Interfaces;
+global using Microsoft.EntityFrameworkCore;
+global using Expense_Tracker.Data;
+global using Microsoft.EntityFrameworkCore;
+global using Expense_Tracker.Services.Interfaces;
 using Expense_Tracker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
