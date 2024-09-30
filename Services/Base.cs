@@ -11,7 +11,7 @@ namespace Expense_Tracker.Services
         public AppDbContext _context {get; set;}
         public Base(AppDbContext context)
         {
-            context = _context;
+            _context = context;
         }
 
         public async Task<List<CategoryResult>> GetAllCategories()
@@ -27,7 +27,7 @@ namespace Expense_Tracker.Services
             }
             var result = Elements.Select(e => new CategoryResult{
                 CategoryName = e.CategoryName,
-                result = false
+                result = true
 
             }).ToList();
             return result;

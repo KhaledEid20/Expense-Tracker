@@ -30,7 +30,7 @@ namespace Expense_Tracker.Services
                 await _context.Categories.AddAsync(newCat);
                 await _context.SaveChangesAsync();
                 return new CategoryResult{
-                    CategoryName = category.CategoryName + "Succefully Added",
+                    CategoryName = category.CategoryName + " Succefully Added",
                     result = true
                 }; 
             }
@@ -39,18 +39,15 @@ namespace Expense_Tracker.Services
         public async Task<CategoryResult> DeleteCategory(CategoryDto category)
         {
             var cat = await _context.Categories.FirstOrDefaultAsync(x => x.CategoryName == category.CategoryName);
-            if(cat!=null){
+            if(cat==null){
                 return new CategoryResult{
                     result = false
                 };
             }
-            var newCat = new Category(){
-                CategoryName = category.CategoryName
-            };
-            _context.Categories.Remove(newCat);
+            _context.Categories.Remove(cat);
             await _context.SaveChangesAsync();
             return new CategoryResult{
-                CategoryName = category.CategoryName + "Succefully Removed",
+                CategoryName = category.CategoryName + " Succefully Removed",
                 result = true
                 }; 
         }

@@ -16,13 +16,13 @@ namespace Expense_Tracker.Services
         public IClaims claims { get  ; set  ; }
         public AppDbContext _context {get; set;}
 
-        public UnitOfWork(IAccount account , IAdmin admin , ICategory category , IExpenses expenses , IClaims claims , AppDbContext context)
+        public UnitOfWork(IAccount _account , IAdmin _admin , ICategory _category , IExpenses _expenses , IClaims _claims , AppDbContext context)
         {
-            account = account;
-            admin = admin;
-            category = category;
-            expenses = expenses;
-            claims = claims;
+            account = _account;
+            admin = _admin;
+            category = _category;
+            expenses = _expenses;
+            claims = _claims;
             _context = context;
         }
         public void Dispose()
