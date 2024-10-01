@@ -10,5 +10,6 @@ namespace Expense_Tracker.Models
         [Key]
         public int Id { get; set; }
         public string? CategoryName { get; set; }
+        public ICollection<Expenses> expenses {get; set;}
     }
 }
