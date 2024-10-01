@@ -7,8 +7,8 @@ namespace Expense_Tracker.Data.DTOs
 {
     public class ExpensesDto
     {
-        public double spendedMoney { get; set; }
         public string description { get; set; } = string.Empty;
+        public double spentMoney { get; set; }
         public int CategoryId { get; set; }
     }
 }

@@ -32,5 +32,27 @@ namespace Expense_Tracker.Services
             }).ToList();
             return result;
         }
+
+        public async Task<List<ExpensesResult>> GetAllExpenses()
+        {
+            var Elements = await _context.Tasks.Include(i => i.category).ToListAsync();
+            if(Elements == null){
+                return new List<ExpensesResult>(){
+                    new ExpensesResult{
+                        error = "No Element Exist",
+                        result = false
+                    }
+                };
+            }
+                    var result = Elements.Select(e => new ExpensesResult{
+                    description = e.description,
+                    spentMoney = e.spentMoney,
+                    CategoryId = e.category.CategoryName,
+                    result = true,
+                    error = ""
+                }).ToList();
+
+            return result;
+        }
     }
 }
