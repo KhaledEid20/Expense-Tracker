@@ -5,10 +5,10 @@ global using Expense_Tracker.Data.DTOs;
 global using Expense_Tracker.Data;
 global using Expense_Tracker.Services.Interfaces;
 global using Microsoft.EntityFrameworkCore;
-global using Expense_Tracker.Data;
-global using Microsoft.EntityFrameworkCore;
-global using Expense_Tracker.Services.Interfaces;
+global using System.Security.Claims;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Expense_Tracker.Services;
+using Expense_Tracker.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGenJwtAuth();
 
 #region Repositories DI
 builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
@@ -27,6 +27,7 @@ builder.Services.AddScoped<ICategory , CategoryRepo>();
 builder.Services.AddScoped<IClaims , Claims>();
 builder.Services.AddScoped<IExpenses , ExpensesRepo>();
 #endregion
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -42,7 +43,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<AppDbContext>();
 
-
+builder.Services.JwtConfigure(builder.Configuration);
 
 var app = builder.Build();
 

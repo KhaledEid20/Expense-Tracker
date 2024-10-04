@@ -11,9 +11,9 @@ namespace Expense_Tracker.Services
 {
     public class CategoryRepo : Base<Category> , ICategory
     {
-        public CategoryRepo(AppDbContext context) : base(context)
+        public CategoryRepo(AppDbContext context , UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager,IConfiguration configuration) : base(context , userManager , roleManager ,configuration)
         {
-            
+
         }
         public async Task<CategoryResult> AppendCategory(CategoryDto category)
         {

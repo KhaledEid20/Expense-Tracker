@@ -9,9 +9,10 @@ namespace Expense_Tracker.Services
 {
     public class ExpensesRepo : Base<Expenses>,IExpenses
     {
-        public ExpensesRepo(AppDbContext context) : base(context)
+        public ExpensesRepo(AppDbContext context , UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager,IConfiguration configuration) : base(context , userManager , roleManager ,configuration)
         {
         }
+        
         public async Task<ExpensesResult> AddExpenses(ExpensesDto expense)
         {
             var exp = await _context.Tasks.FirstOrDefaultAsync(x => x.description == expense.description);

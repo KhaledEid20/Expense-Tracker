@@ -9,6 +9,7 @@ namespace Expense_Tracker.Services.Interfaces
     {
         Task<List<CategoryResult>> GetAllCategories();
         Task<List<ExpensesResult>> GetAllExpenses();
-
+        Task<AuthResultDto> GenerateToken(IdentityUser appuser);
+        Task<List<Claim>> GetClaims(IdentityUser user);
     }
 }

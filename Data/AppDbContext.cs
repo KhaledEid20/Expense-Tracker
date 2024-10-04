@@ -25,5 +25,6 @@ namespace Expense_Tracker.Data
         }
         public DbSet<Expenses> Tasks { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<RefreshToken> refreshTokens { get; set; }
     }
 }
