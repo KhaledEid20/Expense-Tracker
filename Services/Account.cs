@@ -93,7 +93,8 @@ namespace Expense_Tracker.Services
 
             var utcExpiryDate = long.Parse(claimsPrincipal.Claims.FirstOrDefault(f => f.Type== JwtRegisteredClaimNames.Exp).Value);
             var ExpiryDate = await DateTimeToDateStamp(utcExpiryDate);
-            ExpiryDate = DateTime.Now.AddHours(-1); // just for testing
+            
+            // ExpiryDate = DateTime.Now.AddHours(-1); // just for testing
             if(ExpiryDate > DateTime.Now){
                 return new AuthResultDto{
                     error = "the token Is still valid",
